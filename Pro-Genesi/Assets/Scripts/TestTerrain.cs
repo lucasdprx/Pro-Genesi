@@ -1,37 +1,73 @@
-using System;
 using UnityEngine;
 
 public class TestTerrain : MonoBehaviour
 {
-    [SerializeField] private float raiseAmount = 0.05f;
+    [SerializeField] private float height = 1;
+    [SerializeField] private int radius = 5;
+    [SerializeField] [Range(0, 1)] private float roughness = 0.1f;
     
     public Terrain terrain;
+    private TerrainData terrainData;
+    private float timer;
     
     private Camera cam;
 
     private void Start()
     {
         terrain.terrainData = Instantiate(terrain.terrainData);
+        terrainData = terrain.terrainData;
+        GetComponent<TerrainCollider>().terrainData = terrainData;
         cam = Camera.main;
     }
 
     private void Update()
     {
-        if (!Input.GetMouseButton(0)) return;
+        if (!Input.GetMouseButtonDown(0)) return;
         
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         if (!Physics.Raycast(ray, out RaycastHit hit)) return;
         
-        TerrainData terrainTerrainData = terrain.terrainData;
+        RaiseTerrain(hit.point, radius, height / 100);
         
-        Vector3 terrainPos = hit.point - terrain.transform.position;
-        Vector3 mapCoord = new(terrainPos.x / terrainTerrainData.size.x, 0, terrainPos.z / terrainTerrainData.size.z);
+    }
 
-        int mapX = (int)(mapCoord.x * terrainTerrainData.heightmapResolution);
-        int mapZ = (int)(mapCoord.z * terrainTerrainData.heightmapResolution);
+    private void RaiseTerrain(Vector3 worldPos, float raiseRadius, float strength)
+    {
+        int hmWidth = terrainData.heightmapResolution;
+        int hmHeight = terrainData.heightmapResolution;
 
-        float[,] heights = terrainTerrainData.GetHeights(mapX, mapZ, 1, 1);
-        heights[0, 0] += raiseAmount;
-        terrainTerrainData.SetHeights(mapX, mapZ, heights);
+        int mapX = (int)(worldPos.x / terrainData.size.x * hmWidth);
+        int mapZ = (int)(worldPos.z / terrainData.size.z * hmHeight);
+
+        int radiusInSamples = Mathf.RoundToInt(raiseRadius / terrainData.size.x * hmWidth);
+
+        int xStart = Mathf.Clamp(mapX - radiusInSamples, 0, hmWidth - 1);
+        int zStart = Mathf.Clamp(mapZ - radiusInSamples, 0, hmHeight - 1);
+        int xEnd = Mathf.Clamp(mapX + radiusInSamples, 0, hmWidth - 1);
+        int zEnd = Mathf.Clamp(mapZ + radiusInSamples, 0, hmHeight - 1);
+
+        int sizeX = xEnd - xStart;
+        int sizeZ = zEnd - zStart;
+
+        float[,] heights = terrainData.GetHeights(xStart, zStart, sizeX, sizeZ);
+
+        for (int x = 0; x < sizeX; x++)
+        {
+            for (int z = 0; z < sizeZ; z++)
+            {
+                float dx = (x + xStart - mapX) / (float)radiusInSamples;
+                float dz = (z + zStart - mapZ) / (float)radiusInSamples;
+                float dist = Mathf.Sqrt(dx * dx + dz * dz);
+
+                if (dist <= 1f)
+                {
+                    float falloff = Mathf.Cos(dist * Mathf.PI * roughness);
+
+                    heights[z, x] += strength * falloff;
+                }
+            }
+        }
+
+        terrainData.SetHeights(xStart, zStart, heights);
     }
 }
