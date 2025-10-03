@@ -1,19 +1,41 @@
-using System;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float scrollSpeed = 5f;
+    [SerializeField] private float lookSpeed = 5f;
     
     private Vector2 moveInput;
+    private Vector2 lookInput;
+    private Transform cameraPivotTransform;
+    private Transform cameraTransform;
+    
     private void Start()
     {
+        cameraPivotTransform = transform;
+        cameraTransform = Camera.main?.transform;
         InputManager.OnMoveInput += SetMoveInput;
+        InputManager.OnScrollInput += ScrollCamera;
+        InputManager.OnLookInput += SetLookInput;
     }
-    
+
+    private void ScrollCamera(Vector2 input)
+    {
+        cameraPivotTransform.position += cameraPivotTransform.forward * input.y * scrollSpeed;
+    }
+
     private void Update()
     {
         Move();
+        
+        print (lookInput);
+
+        if (Input.GetMouseButton(1))
+        {
+            cameraTransform.eulerAngles += new Vector3(-lookInput.y, 0, 0) * (lookSpeed * Time.deltaTime);
+            cameraPivotTransform.eulerAngles += new Vector3(0, lookInput.x, 0) * (lookSpeed * Time.deltaTime);
+        }
     }
 
     private void SetMoveInput(Vector2 input)
@@ -21,9 +43,15 @@ public class CameraController : MonoBehaviour
         moveInput = input;
     }
 
+    private void SetLookInput(Vector2 input)
+    {
+        lookInput = input;
+    }
+    
     private void Move()
     {
-        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
-        transform.Translate(move * (Time.deltaTime * moveSpeed), Space.World);
+        Vector3 move = cameraPivotTransform.forward * moveInput.y + cameraPivotTransform.right * moveInput.x;
+        move.y = 0;
+        cameraPivotTransform.position += move * (moveSpeed * Time.deltaTime);
     }
 }
