@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 53331b8323f1f7d4c8ed89c80fee4482
+guid: 83d2b2789fb37334999acb0018c6f20c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MoonSpriteSheet_0
+      name: SunSpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,14 +112,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d63a8cc56aa973e4d80d0095e5e85d98
-      internalID: -1093660600
+      spriteID: 5e617cde98633724bb3123a26b393765
+      internalID: 1490282657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MoonSpriteSheet_1
+      name: SunSpriteSheet_1
       rect:
         serializedVersion: 2
         x: 341
@@ -134,14 +134,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 722b087d171c1b14cae985b3e0598027
-      internalID: 903102040
+      spriteID: 1ba9a76ce4a2a8c4f99b065d993315f8
+      internalID: -433705615
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MoonSpriteSheet_2
+      name: SunSpriteSheet_2
       rect:
         serializedVersion: 2
         x: 682
@@ -156,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e48adade86a687e4aa0ecc6b906fe0a7
-      internalID: -1200544843
+      spriteID: bab80fd185b1c9e48881a78b6638f378
+      internalID: -27648831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MoonSpriteSheet_3
+      name: SunSpriteSheet_3
       rect:
         serializedVersion: 2
         x: 1023
@@ -178,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0562292ba893244ebe4679b2d9ede75
-      internalID: 670433836
+      spriteID: 1504c32a201fcf14186d5ce8de42beec
+      internalID: 778398471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MoonSpriteSheet_4
+      name: SunSpriteSheet_4
       rect:
         serializedVersion: 2
         x: 1364
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da96c5fb966d1de4ab0f4c6158163c44
-      internalID: -1766906409
+      spriteID: 06db2333dc719254eb88612ff67d38c6
+      internalID: 1987689700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MoonSpriteSheet_5
+      name: SunSpriteSheet_5
       rect:
         serializedVersion: 2
         x: 1705
@@ -222,8 +222,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55cdabb928397fb4e851bcdf9f4420ce
-      internalID: 1916393884
+      spriteID: 96d343d514a4fda45a79c82964103792
+      internalID: -245635733
       vertices: []
       indices: 
       edges: []
@@ -232,7 +232,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 056fbfc81e9974340b50c788aaa6adbd
+    spriteID: 40ff8a2360b886e42bb0830aac4eae22
     internalID: 0
     vertices: []
     indices: 
@@ -244,12 +244,12 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":341.0,"y":512.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      MoonSpriteSheet_0: -1093660600
-      MoonSpriteSheet_1: 903102040
-      MoonSpriteSheet_2: -1200544843
-      MoonSpriteSheet_3: 670433836
-      MoonSpriteSheet_4: -1766906409
-      MoonSpriteSheet_5: 1916393884
+      SunSpriteSheet_0: 1490282657
+      SunSpriteSheet_1: -433705615
+      SunSpriteSheet_2: -27648831
+      SunSpriteSheet_3: 778398471
+      SunSpriteSheet_4: 1987689700
+      SunSpriteSheet_5: -245635733
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
